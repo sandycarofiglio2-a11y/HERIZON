@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HERIZON — Landing Logistica E-Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --rose: #f5ebe8;
+    --mauve: #b5736a;
+    --mauve-dark: #8f4f47;
+    --mauve-light: #d4a09a;
+    --mauve-pale: #e8c8c4;
+    --charcoal: #2c2c2c;
+    --mid: #5a5a5a;
+    --white: #fdfaf9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--rose);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 4rem;
+    background: rgba(245,235,232,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(181,115,106,0.16);
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+  }
+  .logo span { color: var(--mauve); }
+
+  .topbar a {
+    text-decoration: none;
+    background: var(--mauve);
+    color: white;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .topbar a:hover { background: var(--mauve-dark); transform: translateY(-2px); }
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    padding-top: 4rem;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 4rem 5rem 6rem;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--mauve);
+    display: inline-block;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 5.4vw, 6rem);
+    font-weight: 300;
+    line-height: 1.02;
+    margin-bottom: 1.8rem;
+  }
+  h1 em, h2 em { color: var(--mauve); font-style: italic; }
+
+  .hero-sub {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--mid);
+    max-width: 520px;
+    border-left: 2px solid var(--mauve-pale);
+    padding-left: 1.2rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .hero-bullets {
+    display: grid;
+    gap: 0.7rem;
+    margin-bottom: 2.6rem;
+    color: var(--charcoal);
+    font-size: 0.83rem;
+  }
+
+  .hero-bullets span { color: var(--mauve-dark); font-weight: 600; }
+
+  .btn-primary {
+    display: inline-block;
+    width: fit-content;
+    text-decoration: none;
+    background: var(--mauve);
+    color: white;
+    padding: 1.05rem 2.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--mauve-dark); transform: translateY(-2px); }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 4rem;
+    overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--mauve-pale) 0%, var(--rose) 62%);
+    opacity: 0.5;
+  }
+  .visual-card {
+    position: relative;
+    z-index: 1;
+    background: white;
+    width: 100%;
+    max-width: 390px;
+    padding: 2.8rem;
+    box-shadow: 0 24px 70px rgba(181,115,106,0.18);
+    border: 1px solid rgba(181,115,106,0.16);
+  }
+  .visual-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1.4rem;
+  }
+  .metric {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--mauve-pale);
+  }
+  .metric:last-child { border-bottom: none; }
+  .metric strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    color: var(--mauve);
+    font-weight: 300;
+    line-height: 1;
+  }
+  .metric span {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  section { padding: 5.5rem 6rem; }
+  .dark { background: var(--charcoal); color: var(--rose); }
+  .white { background: var(--white); }
+
+  .section-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    margin-bottom: 1rem;
+  }
+  .dark .section-tag { color: var(--mauve-light); }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.4vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.12;
+    margin-bottom: 1.4rem;
+  }
+
+  .lead {
+    max-width: 760px;
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--mid);
+  }
+  .dark .lead { color: rgba(245,235,232,0.68); }
+
+  .filter-box {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .filter-item {
+    padding: 2.4rem;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .filter-item:last-child { border-right: none; }
+  .filter-item h4 {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mauve-light);
+    margin-bottom: 0.9rem;
+  }
+  .filter-item p {
+    font-size: 0.78rem;
+    line-height: 1.85;
+    color: rgba(245,235,232,0.62);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--mauve-pale);
+    margin-top: 3rem;
+  }
+  .step {
+    padding: 2.3rem;
+    border-right: 1px solid var(--mauve-pale);
+    background: white;
+  }
+  .step:last-child { border-right: none; }
+  .step-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem;
+    color: var(--mauve);
+    line-height: 1;
+    margin-bottom: 1.2rem;
+  }
+  .step h4 {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .step p { font-size: 0.76rem; line-height: 1.8; color: var(--mid); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+  .service-card {
+    background: white;
+    padding: 2.3rem;
+    border: 1px solid transparent;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 45px rgba(181,115,106,0.13);
+    border-color: var(--mauve-pale);
+  }
+  .service-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+  }
+  .service-card p { font-size: 0.76rem; line-height: 1.85; color: var(--mid); }
+
+  .proof-grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--mauve-pale);
+  }
+  .proof {
+    padding: 2.6rem 2rem;
+    text-align: center;
+    border-right: 1px solid var(--mauve-pale);
+  }
+  .proof:last-child { border-right: none; }
+  .proof strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300;
+    color: var(--mauve);
+    line-height: 1;
+  }
+  .proof span {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-weight: 500;
+  }
+  .proof p {
+    margin-top: 0.7rem;
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  .cta-section {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 4rem;
+    align-items: center;
+    background: var(--rose);
+  }
+  .contact-info {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+  .contact-info strong {
+    color: var(--mauve);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.65rem;
+    display: block;
+  }
+
+  .form-card {
+    background: white;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(181,115,106,0.12);
+  }
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 1.6rem;
+  }
+  .form-group { margin-bottom: 1.25rem; }
+  label {
+    display: block;
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    margin-bottom: 0.45rem;
+    font-weight: 500;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 0.9rem 0;
+    border: none;
+    border-bottom: 1px solid var(--mauve-pale);
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    color: var(--charcoal);
+    outline: none;
+  }
+  textarea { min-height: 90px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { border-bottom-color: var(--mauve); }
+  .submit {
+    width: 100%;
+    margin-top: 0.8rem;
+    padding: 1.1rem;
+    background: var(--mauve);
+    color: white;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .submit:hover { background: var(--mauve-dark); }
+  .small-note {
+    margin-top: 1rem;
+    font-size: 0.68rem;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  .metodo-steps { grid-template-columns: repeat(3, 1fr); }
+  .method-closing {
+    margin-top: 2.2rem;
+    text-align: center;
+    font-size: 0.86rem;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+  .cta-trust {
+    margin-top: 1.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mauve);
+  }
+
+  footer {
+    background: var(--charcoal);
+    color: rgba(245,235,232,0.48);
+    padding: 2rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  @media (max-width: 1024px) {
+    .topbar { padding: 1rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 1.8rem 3rem; }
+    .hero-right { padding: 2rem 1.8rem 4rem; }
+    section { padding: 4.5rem 1.8rem; }
+    .filter-box, .steps, .services-grid, .proof-grid, .cta-section { grid-template-columns: 1fr; }
+    .filter-item, .step, .proof { border-right: none; border-bottom: 1px solid var(--mauve-pale); }
+    .dark .filter-item { border-bottom-color: rgba(255,255,255,0.12); }
+    .filter-item:last-child, .step:last-child, .proof:last-child { border-bottom: none; }
+    footer { padding: 2rem 1.8rem; flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .topbar a { padding: 0.7rem 1rem; font-size: 0.6rem; }
+    .logo { font-size: 1.25rem; }
+    .form-card { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo"><span>HER</span>IZON</div>
+  <a href="#contatti">Richiedi valutazione</a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-left">
+      <p class="eyebrow">Logistica e-commerce premium</p>
+      <h1>Logistica per brand che vogliono scalare <em>senza perdere controllo</em></h1>
+      <p class="hero-sub">
+        Gestiamo magazzino, preparazione ordini e spedizioni per brand e-commerce nei settori beauty, fashion, artigianato e premium.
+        Una logistica curata, diretta e integrata con il tuo shop.
+      </p>
+      <div class="hero-bullets">
+        <div><span>✓</span> Preparazione ordini 24/48h</div>
+        <div><span>✓</span> Integrazione WMS gratuita</div>
+        <div><span>✓</span> Referente diretto, niente call center</div>
+      </div>
+      <a href="#contatti" class="btn-primary">Richiedi analisi gratuita</a>
+    </div>
+
+    <div class="hero-right">
+      <div class="visual-card">
+        <h3>Per brand che non cercano solo un corriere.</h3>
+        <div class="metric">
+          <strong>24/48h</strong>
+          <span>Evasione ordini</span>
+        </div>
+        <div class="metric">
+          <strong>1:1</strong>
+          <span>Referente dedicato</span>
+        </div>
+        <div class="metric">
+          <strong>WMS</strong>
+          <span>Integrazione inclusa</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <p class="section-tag">Filtro clienti</p>
+    <h2>Non lavoriamo con tutti.</h2>
+    <p class="lead">
+      Herizon è pensata per aziende che vogliono una logistica stabile, ordinata e professionale.
+      Non siamo la soluzione più economica: siamo il partner giusto per chi vuole proteggere il proprio brand anche dopo il checkout.
+    </p>
+
+    <div class="filter-box">
+      <div class="filter-item">
+        <h4>Ordini reali</h4>
+        <p>Ideale per brand con flussi costanti o in crescita, indicativamente da 100 ordini/mese.</p>
+      </div>
+      <div class="filter-item">
+        <h4>Settori premium</h4>
+        <p>Beauty, moda, artigianato, accessori, luxury e prodotti dove packaging e cura contano.</p>
+      </div>
+      <div class="filter-item">
+        <h4>Relazione seria</h4>
+        <p>Lavoriamo meglio con clienti che vogliono continuità, chiarezza e un servizio strutturato.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="white metodo-section">
+    <p class="section-tag">Metodo</p>
+    <h2>Dalla merce al cliente finale, <em>senza caos.</em></h2>
+
+    <div class="steps metodo-steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <h4>Analisi del flusso</h4>
+        <p>Studiamo ordini, volumi, criticità e piattaforma e-commerce. Prima capiamo dove perdi tempo, margine e controllo.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <h4>Setup operativo</h4>
+        <p>Organizziamo stock, procedure, codici, packaging e integrazione WMS per rendere il flusso chiaro fin dal primo ordine.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <h4>Gestione quotidiana</h4>
+        <p>Prepariamo gli ordini, curiamo il pacco e gestiamo le spedizioni in 24/48h con tracciamento e referente diretto.</p>
+      </div>
+    </div>
+
+    <p class="method-closing">Non dovrai più rincorrere la logistica operativa. Avrai controllo, ordine e continuità.</p>
+  </section>
+
+  <section>
+    <p class="section-tag">Cosa gestiamo</p>
+    <h2>Una logistica completa, <em>ma non generica</em>.</h2>
+    <p class="lead">
+      Il nostro valore non è solo “spedire”. È mantenere ordine, precisione e percezione premium lungo tutto il flusso operativo.
+    </p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <h4>Stoccaggio</h4>
+        <p>Gestione stock, box, pallet e organizzazione merce con visibilità operativa.</p>
+      </div>
+      <div class="service-card">
+        <h4>Preparazione ordini</h4>
+        <p>Picking, imballaggio, controllo, scansione e personalizzazione del pacco.</p>
+      </div>
+      <div class="service-card">
+        <h4>Spedizioni</h4>
+        <p>Gestione spedizioni Italia ed Europa con tracking e flussi ordinati.</p>
+      </div>
+      <div class="service-card">
+        <h4>Packaging brandizzato</h4>
+        <p>Inserimento gadget, coupon, materiali personalizzati e dettagli di brand experience.</p>
+      </div>
+      <div class="service-card">
+        <h4>WMS e integrazione</h4>
+        <p>Dashboard, sincronizzazione ordini e comunicazione con i principali e-commerce.</p>
+      </div>
+      <div class="service-card">
+        <h4>Post-vendita</h4>
+        <p>Supporto nella gestione di giacenze, tracking e richieste operative.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="white">
+    <p class="section-tag">Perché Herizon</p>
+    <h2>Il cliente compra dal tuo brand. <em>Ma giudica anche la consegna.</em></h2>
+    <p class="lead">
+      Una spedizione sbagliata non sembra colpa della logistica. Sembra colpa del brand.
+      Per questo la logistica deve essere curata, stabile e coerente con il posizionamento del prodotto.
+    </p>
+
+    <div class="proof-grid">
+      <div class="proof">
+        <strong>24/48h</strong>
+        <span>Tempi operativi</span>
+        <p>Preparazione e partenza ordini secondo flussi definiti.</p>
+      </div>
+      <div class="proof">
+        <strong>+100</strong>
+        <span>Ordini/mese ideali</span>
+        <p>Filtro minimo consigliato per lavorare con continuità.</p>
+      </div>
+      <div class="proof">
+        <strong>1:1</strong>
+        <span>Referente diretto</span>
+        <p>Una relazione operativa chiara, senza passaggi inutili.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contatti" class="cta-section final-cta">
+    <div>
+      <p class="section-tag">Contatto</p>
+      <h2>Stai perdendo tempo con una logistica che <em>non scala</em>?</h2>
+      <p class="lead">
+        Analizziamo il tuo flusso attuale e ti diciamo dove stai perdendo efficienza.
+        Se ha senso lavorare insieme, ti facciamo una proposta concreta.
+      </p>
+      <div class="cta-trust">Nessun impegno · Risposta entro 24h · Contatto diretto</div>
+      <div class="contact-info">
+        <div><strong>Sede</strong>Via Tarantelli 20 — 22076 Mozzate (CO)</div>
+        <div><strong>Email</strong>customercare@herizon.it</div>
+        <div><strong>Telefono</strong>353 388 5696</div>
+      </div>
+    </div>
+
+    <form class="form-card" action="mailto:customercare@herizon.it" method="post" enctype="text/plain">
+      <p class="form-title">Richiedi analisi gratuita</p>
+
+      <div class="form-group">
+        <label for="brand">Nome brand / azienda</label>
+        <input id="brand" name="Brand" type="text" placeholder="Il tuo brand" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="Email" type="email" placeholder="email@tuobrand.it" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ordini">Volume ordini mensili</label>
+        <select id="ordini" name="Volume ordini mensili" required>
+          <option value="">Seleziona</option>
+          <option>0–100 ordini/mese</option>
+          <option>100–500 ordini/mese</option>
+          <option>500–1.000 ordini/mese</option>
+          <option>Oltre 1.000 ordini/mese</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="platform">Piattaforma e-commerce</label>
+        <input id="platform" name="Piattaforma" type="text" placeholder="Shopify, WooCommerce, Prestashop...">
+      </div>
+
+      <div class="form-group">
+        <label for="messaggio">Di cosa hai bisogno?</label>
+        <textarea id="messaggio" name="Messaggio" placeholder="Es. stoccaggio, preparazione ordini, spedizioni, integrazione shop..."></textarea>
+      </div>
+
+      <button class="submit" type="submit">Richiedi analisi gratuita →</button>
+      <p class="small-note">Form provvisorio con invio email. Per pubblicarla in modo professionale va collegato a Formspree, Carrd, Brevo o HubSpot.</p>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div><span style="color:#b5736a;">HER</span>IZON · Logistica E-Commerce</div>
+  <div>© 2026 Herizon · customercare@herizon.it</div>
+</footer>
+
+</body>
+</html>
